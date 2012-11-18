@@ -7,9 +7,17 @@ gem 'puma'        , '~> 1.6.3'
 gem 'rails'       , '~> 3.2.9'
 
 group :assets do
-  gem 'coffee-rails' , '~> 3.2.1'
-  gem 'sass-rails'   , '~> 3.2.3'
-  gem 'uglifier'     , '~> 1.0.3'
+  gem 'jquery-rails'   , '~> 2.1.3'
+  gem 'momentjs-rails' , '~> 1.7.0'
+  gem 'uglifier'       , '~> 1.0.3'
+
+  gem 'twitter-bootstrap-rails',
+      :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git',
+      :branch => 'static'
+
+  # gem 'coffee-rails'   , '~> 3.2.1'
+  # gem 'sass-rails'     , '~> 3.2.3'
+  # gem 'leaflet-rails'  , '~> 0.4.5'
 end
 
 group :development do

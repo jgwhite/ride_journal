@@ -1,0 +1,24 @@
+<div class="form-horizontal">
+  <div class="control-group">
+    <label class="control-label" for="rideMetaTitle">Title</label>
+    <div class="controls">
+      {{view Ember.TextField valueBinding="controller.title" id="rideMetaTitle"}}
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label" for="rideMetaSubtitle">Subtitle</label>
+    <div class="controls">
+      {{view Ember.TextField valueBinding="controller.subtitle" id="rideMetaSubtitle"}}
+    </div>
+  </div>
+  <div class="control-group">
+    <div class="controls">
+      {{view RideJournal.GPSField valueBinding="controller.gpx" id="rideMetaGpx"}}
+    </div>
+  </div>
+  <div class="control-group">
+    <div class="controls">
+      <button type="submit" class="btn btn-primary" {{bindAttr disabled="metaIncomplete"}} {{action next}}>Next</button>
+    </div>
+  </div>
+</div>
