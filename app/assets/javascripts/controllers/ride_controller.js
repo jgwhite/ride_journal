@@ -1,6 +1,6 @@
 RideJournal.RideController = Ember.ObjectController.extend({
 
-  mapUrl: 'http://api.tiles.mapbox.com/v3/jgwhite.map-o56wx0qu',
+  mapUrl: 'http://api.tiles.mapbox.com/v3/ride-journal.map-ov3ln4no',
   mapFormat: '640x268.png',
   mapZoom: 13,
 
