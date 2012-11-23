@@ -3,7 +3,8 @@ ruby '1.9.3'
 
 gem 'ember-rails' , '~> 0.8.0'
 gem 'mongoid'     , '~> 3.0.0'
-gem 'puma'        , '~> 1.6.3'
+gem 'nokogiri'    , '~> 1.5.5'
+gem 'puma'        , '~> 1.6.3' , :require => false
 gem 'rails'       , '~> 3.2.9'
 
 group :assets do
@@ -22,4 +23,9 @@ end
 
 group :development do
   gem 'foreman' , '~> 0.60.2'
+end
+
+group :test, :development do
+  gem 'pry'         , '~> 0.9.10'
+  gem 'rspec-rails' , '~> 2.12.0'
 end

@@ -32,6 +32,21 @@ RideJournal.RideController = Ember.ObjectController.extend({
 
   metaIncomplete: function() {
     return !this.get('metaComplete');
-  }.property('metaComplete')
+  }.property('metaComplete'),
+
+  fileDidChange: function() {
+    if (this.get('file')) this.fetchData();
+  }.observes('file'),
+
+  fetchData: function() {
+    var data = new FormData();
+    data.append('file', this.get('file'));
+    $.ajax('/gpsbabel', {
+      type: 'POST',
+      contentType: false,
+      processData: false,
+      data: data,
+    });
+  }
 
 });
