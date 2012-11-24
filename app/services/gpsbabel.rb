@@ -39,7 +39,7 @@ class Gpsbabel
 
   def create_gpx_and_read
     data = nil
-    gpsbabel_bin = File.expand_path `which gpsbabel`
+    gpsbabel_bin = File.expand_path `which gpsbabel`.chop
 
     intype = gpsbabel_type
     infile = 'input' + source_type
