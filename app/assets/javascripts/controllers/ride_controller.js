@@ -6,6 +6,26 @@ RideJournal.RideController = Ember.ObjectController.extend({
     return this.get('gpx.trk.trkseg.trkpt');
   }.property('gpx.trk.trkseg.trkpt'),
 
+  bounds: function() {
+    var points = this.get('points'),
+        point = points.objectAt(0),
+        result = {
+      minlat: parseFloat(point.lat, 10),
+      minlon: parseFloat(point.lon, 10),
+      maxlat: parseFloat(point.lat, 10),
+      maxlon: parseFloat(point.lon, 10)
+    };
+
+    this.get('points').forEach(function(p) {
+      result.minlat = Math.min(result.minlat, parseFloat(p.lat, 10));
+      result.minlon = Math.min(result.minlon, parseFloat(p.lon, 10));
+      result.maxlat = Math.max(result.maxlat, parseFloat(p.lat, 10));
+      result.maxlon = Math.max(result.maxlon, parseFloat(p.lon, 10));
+    });
+
+    return result;
+  }.property('points'),
+
   metaComplete: function() {
     return this.get('title') &&
            this.get('subtitle') &&
