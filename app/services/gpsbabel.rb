@@ -39,18 +39,17 @@ class Gpsbabel
 
   def create_gpx_and_read
     data = nil
+    gpsbabel_bin = File.expand_path `which gpsbabel`
+
+    intype = gpsbabel_type
+    infile = 'input' + source_type
+
+    outtype = 'gpx'
+    outfile = 'ouput.gpx'
 
     in_tmp_dir do
-      intype = gpsbabel_type
-      infile = 'input' + source_type
-
-      outtype = 'gpx'
-      outfile = 'ouput.gpx'
-
       File.open(infile, 'wb') { |f| f << source.read }
-
-      `gpsbabel -i #{intype} -f #{infile} -o #{outtype} -F #{outfile}`
-
+      `#{gpsbabel_bin} -i #{intype} -f #{infile} -o #{outtype} -F #{outfile}`
       data = File.read outfile
     end
 
