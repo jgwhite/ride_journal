@@ -17,3 +17,7 @@
 body {
   padding-top: 60px;
 }
+
+.map-view {
+  width: 964px; height: 182px;
+}

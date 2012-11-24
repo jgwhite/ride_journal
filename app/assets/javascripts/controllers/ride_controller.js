@@ -1,28 +1,6 @@
 RideJournal.RideController = Ember.ObjectController.extend({
 
-  mapUrl: 'http://api.tiles.mapbox.com/v3/ride-journal.map-ov3ln4no',
-  mapFormat: '640x268.png',
-  mapZoom: 13,
-
-  mapSrc: function() {
-    return [
-      this.get('mapUrl'),
-      this.get('mapLoc'),
-      this.get('mapFormat')
-    ].join('/');
-  }.property('mapUrl', 'mapLoc', 'mapFormat'),
-
-  mapLoc: function() {
-    return [
-      this.get('origin.lon'),
-      this.get('origin.lat'),
-      this.get('mapZoom')
-    ].join(',');
-  }.property('origin'),
-
-  origin: function() {
-    return this.get('gpx.points').objectAt(0);
-  }.property('gpx'),
+  mapId: 'ride-journal.map-ov3ln4no',
 
   metaComplete: function() {
     return this.get('title') &&
@@ -35,17 +13,23 @@ RideJournal.RideController = Ember.ObjectController.extend({
   }.property('metaComplete'),
 
   fileDidChange: function() {
-    if (this.get('file')) this.fetchData();
+    if (this.get('file')) this.fetchGpx();
   }.observes('file'),
 
-  fetchData: function() {
-    var data = new FormData();
+  fetchGpx: function() {
+    var self = this,
+        data = new FormData();
+
     data.append('file', this.get('file'));
+
     $.ajax('/gpsbabel', {
       type: 'POST',
       contentType: false,
       processData: false,
       data: data,
+      dataType: 'json'
+    }).then(function(data) {
+      self.set('gpx', data.gpx);
     });
   }
 

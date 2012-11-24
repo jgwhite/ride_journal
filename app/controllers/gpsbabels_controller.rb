@@ -1,6 +1,4 @@
 require 'tmpdir'
-require 'pry'
-
 class GpsbabelsController < ApplicationController
   def create
     file = params[:file]

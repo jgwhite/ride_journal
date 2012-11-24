@@ -29,6 +29,7 @@ RideJournal.GPSField = Ember.View.extend({
   },
 
   readFile: function(file) {
+    this.$('button').attr('disabled', true).html('Uploading GPS Data…');
     this.set('controller.file', file);
   }
 
